@@ -44,7 +44,7 @@ data <- eset@assayData$exprs # data = rma-noramlized expression data
 #####################################
 
 # read-in annotation data
-annot <- read.csv('HG-U133_Plus_2.na35.annotation.mod.csv',
+annot <- read.csv('HG-U133_Plus_2.na35.annotation.modified.csv',
                   header=TRUE,
                   stringsAsFactors=FALSE) ## dim(annot) # [1] 54675 41
 
