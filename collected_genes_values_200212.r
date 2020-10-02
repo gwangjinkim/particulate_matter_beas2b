@@ -3,8 +3,8 @@
 #########################################################
 
 # install the packages for Excel output if they are not installed
-if ("openxlsx" %in% rownames(installed.packages()) install.packages("openxlsx")
-if ("xlsx2dfs" %in% rownames(installed.packages()) install.packages("xlsx2dfs")
+if ("openxlsx" %in% rownames(installed.packages())) install.packages("openxlsx")
+if ("xlsx2dfs" %in% rownames(installed.packages())) install.packages("xlsx2dfs")
 
 # genes of interest (goi)
 goi.1 <- c("PPARGC1A", "SOD1", "SOD2", "SOD3", "GPX1", "GPX2", "GPX3", 
@@ -14,6 +14,11 @@ goi.1 <- c("PPARGC1A", "SOD1", "SOD2", "SOD3", "GPX1", "GPX2", "GPX3",
 goi.2 <- c("BCL2", "BCL2L1", "XIAP", "BIRC5", "CFLAR", "MCL1", 
              "BAD", "BBC2", "BCL2L8", "BAX", "BCL2L4", "BAK1", "BAK", "BCL2L7", 
              "BIM", "BCL2L11", "BID", "HMGB1", "BECN1", "ATG5")
+# columns of interest
+cols <- c("K1_15.5_Kontrolle_200814_133Plus_2.CEL", "M1_15.5_Kontrolle_110914_133Plus_2.CEL", 
+          "R1_15.5_Kontrolle_190814_133Plus_2.CEL", "K5_15.5_Filtergut_Kontrolle_220814_133Plus_2.CEL", 
+          "M5_15.5_Filtergut_Kontrolle_101114_133_Plus_2.CEL", "R5_15.5_Filtergut_Kontrolle_061114_133_Plus_2.CEL", 
+          "control_mean", "control_std", "treated_mean", "treated_std", "Probe.Set.ID", "Gene.Symbol")
 
 # predicate function for filtering
 gene_name_contained <- Vectorize(function(query_gene, subject_gene, delimiter) {
@@ -41,18 +46,14 @@ create_columns <- function(df) {
 df <- xlsx2dfs::xlsx2dfs("expressions_annotated_PM2.5_vs_control.xlsx")[[1]]
                                       
 # eliminate uninteresting columns
-cols <- c("K1_15.5_Kontrolle_200814_133Plus_2.CEL", "M1_15.5_Kontrolle_110914_133Plus_2.CEL", 
-          "R1_15.5_Kontrolle_190814_133Plus_2.CEL", "K5_15.5_Filtergut_Kontrolle_220814_133Plus_2.CEL", 
-          "M5_15.5_Filtergut_Kontrolle_101114_133_Plus_2.CEL", "R5_15.5_Filtergut_Kontrolle_061114_133_Plus_2.CEL", 
-          "control_mean", "control_std", "treated_mean", "treated_std", "Probe.Set.ID", "Gene.Symbol")
 df <- df[, cols]
                                       
 # calculate and add DELTA fc log2FC AveExp columns 
 df <- create_columns(df)
     
 # filter for rows containing the goi gene groups
-df.1 <- collect_rows_containing(df = df, genes_vec = genes, df_col = "Gene.Symbol", delimiter = " /// ")
-df.2 <- collect_rows_containing(df = df, genes_vec = genes.1, df_col = "Gene.Symbol", delimiter = " /// ")
+df.1 <- collect_rows_containing(df, goi.1, "Gene.Symbol")
+df.2 <- collect_rows_containing(df, goi.2, "Gene.Symbol")
 
 # print them out sheet-wise
 xlsx2dfs::dfs2xlsx(withNames("table_to_point_5", df.1,
