@@ -20,14 +20,19 @@
 # ## repectively!
 ################################################################################
 
-# install the packages for Excel output
-install.packages("openxlsx")
-install.packages("xlsx2dfs")
+# install the packages for Excel output if they are not installed
+if ("openxlsx" %in% rownames(installed.packages()) install.packages("openxlsx")
+if ("xlsx2dfs" %in% rownames(installed.packages()) install.packages("xlsx2dfs")
 
 ################################################################################
 
+# transfer CEL files from GEO into the same folder where this script is located.
+# also make sure that the 'myphenotypes1.csv' file and the annotation file
+# 'HG-U133_Plus_2.na35.annotation.mod.csv' are present in this same folder.
+# Open R console in this folder (setwd to it) 
+# (simpleaffy cannot handle absolute paths correctly)
 dir_path <- '.' 
-fname <- 'myphenotypes1.csv' # CELs must be in same folder
+fname <- 'myphenotypes1.csv' # CELs must be in same folder!
 
 # setwd(dir_path) # phentype and CEL files must be in same folder
 raw.data <- simpleaffy::read.affy(fname)        
