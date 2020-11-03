@@ -59,24 +59,3 @@ df.2 <- collect_rows_containing(df, goi.2, "Gene.Symbol")
 xlsx2dfs::dfs2xlsx(withNames("table_to_point_5", df.1,
                              "table_to_point_6", df.2), 
                    fpath = "collected_genes_values_200212_corrected.xlsx")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
