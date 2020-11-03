@@ -1,5 +1,5 @@
 ################################################################################
-# INSTALL CONDA ENVIRONMENT
+# INSTALL r-base and the simpleaffy package into a new CONDA ENVIRONMENT
 ################################################################################
 # $ conda update -n base -c defaults conda
 # $ conda create --name expr_analysis
@@ -21,8 +21,8 @@
 ################################################################################
 
 # install the packages for Excel output if they are not installed
-if ("openxlsx" %in% rownames(installed.packages())) install.packages("openxlsx")
-if ("xlsx2dfs" %in% rownames(installed.packages())) install.packages("xlsx2dfs")
+if (!"openxlsx" %in% rownames(installed.packages())) install.packages("openxlsx")
+if (!"xlsx2dfs" %in% rownames(installed.packages())) install.packages("xlsx2dfs")
 
 ################################################################################
 
