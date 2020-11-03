@@ -3,8 +3,8 @@
 #########################################################
 
 # install the packages for Excel output if they are not installed
-if ("openxlsx" %in% rownames(installed.packages())) install.packages("openxlsx")
-if ("xlsx2dfs" %in% rownames(installed.packages())) install.packages("xlsx2dfs")
+if (!"openxlsx" %in% rownames(installed.packages())) install.packages("openxlsx")
+if (!"xlsx2dfs" %in% rownames(installed.packages())) install.packages("xlsx2dfs")
 
 # genes of interest (goi)
 goi.1 <- c("PPARGC1A", "SOD1", "SOD2", "SOD3", "GPX1", "GPX2", "GPX3", 
