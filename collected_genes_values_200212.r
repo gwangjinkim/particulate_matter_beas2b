@@ -43,7 +43,7 @@ create_columns <- function(df) {
 }
 
 # read-in expression data from excel file
-df <- xlsx2dfs::xlsx2dfs("expressions_annotated_PM2.5_vs_control.xlsx")[[1]]
+df <- xlsx2dfs::xlsx2dfs("expressions_annotated_PM2.5_vs_control_2008_03_17.xlsx")[[1]] # "expressions_annotated_PM2.5_vs_control.xlsx"
                                       
 # eliminate uninteresting columns
 df <- df[, cols]
