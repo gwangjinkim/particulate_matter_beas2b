@@ -29,8 +29,8 @@ if ("xlsx2dfs" %in% rownames(installed.packages())) install.packages("xlsx2dfs")
 # transfer CEL files from GEO into the same folder where this script is located.
 # also make sure that the 'myphenotypes1.csv' file and the annotation file
 # 'HG-U133_Plus_2.na35.annotation.mod.csv' are present in this same folder.
-# Open R console in this folder (setwd to it) 
-# (simpleaffy cannot handle absolute paths correctly)
+# Open R console in this folder (or `setwd()` to it).
+# (simpleaffy unfortulately cannot handle absolute paths correctly)
 dir_path <- '.' 
 fname <- 'myphenotypes1.csv' # CELs must be in same folder!
 
@@ -68,11 +68,12 @@ xlsx2dfs::dfs2xlsx(xlsx2dfs::withNames("expr_annot_PM2.5_vs_control", res_df),
 
 
 ################################################################################
-#### this is usually the way to translate affy_ids to symbols - but 
+#### the following is usually the way to translate affy_ids to symbols - but 
 #### the package doesn't contain the data which have "_s_" in its affy ids
 #### (non-unique data).
-#### to handle also those, I decided to download from the company site
-#### the annotation file and to annotate manually.
+#### Thus, for this project, to include those, I decided to download the annotation file 
+#### from the company site and to annotate manually.
+#### However, in another situtation the following code might be useful:
 # BiocManager::install("hgu133plus2.db")
 # affy2symbol_list <- function(affy_ids) {
 #    x <- hgu133plus2.db::hgu133plus2SYMBOL
@@ -82,13 +83,3 @@ xlsx2dfs::dfs2xlsx(xlsx2dfs::withNames("expr_annot_PM2.5_vs_control", res_df),
 # # usage:
 # affy2symbol_list(c("1007_s_at", "1053_at", "1255_g_at", "1294_at"))
 ################################################################################
-
-
-
-
-
-
-
-
-
-
