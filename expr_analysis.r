@@ -32,7 +32,7 @@ if (!"xlsx2dfs" %in% rownames(installed.packages())) install.packages("xlsx2dfs"
 # Open R console in this folder (or `setwd()` to it).
 # (simpleaffy unfortulately cannot handle absolute paths correctly)
 dir_path <- '.' 
-fname <- 'myphenotypes1.csv' # CELs must be in same folder!
+fname <- 'myphenotypes1.tab' # CELs must be in same folder!
 
 # setwd(dir_path) # phentype and CEL files must be in same folder
 raw.data <- simpleaffy::read.affy(fname)        
