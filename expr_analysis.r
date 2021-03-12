@@ -27,7 +27,7 @@ if (!"xlsx2dfs" %in% rownames(installed.packages())) install.packages("xlsx2dfs"
 ################################################################################
 
 # transfer CEL files from GEO into the same folder where this script is located.
-# also make sure that the 'myphenotypes1.csv' file and the annotation file
+# also make sure that the 'myphenotypes1.tab' file and the annotation file
 # 'HG-U133_Plus_2.na35.annotation.mod.csv' are present in this same folder.
 # Open R console in this folder (or `setwd()` to it).
 # (simpleaffy unfortulately cannot handle absolute paths correctly)
